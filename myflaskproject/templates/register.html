@@ -1,0 +1,89 @@
+<html xmln="http://www.w3.org/1999/xhtml" style="visibility: visible;">
+    <head>
+        <title>register</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='register.css') }}"/>
+    </head>
+    <body>
+        <div id="nav">
+            <a id="signup">sign up</a>
+        </div>
+        <div id="wraper">
+            <div class="regdiv" id="namediv">
+                <label class="reglabel">name</label>
+                <input class="reginput" type="text" id="username"></input>
+                <a class="reginfo">* at least 6 digits or characters.</a>
+            </div>
+            <div class="regdiv" id="pwddiv">
+                <label class="reglabel">password</label>
+                <input class="reginput" type="password" id="password"></input>
+                <a class="reginfo">* at least 6 in length.</a>
+            </div>
+            <div class="regdiv" id="pwddiv2">
+                <label class="reglabel">confirm</label>
+                <input class="reginput" type="password" id="password2"></input>
+                <a class="reginfo">* the same as above.</a>
+            </div>
+            <div class="regdiv" id="veridiv">
+                <label class="reglabel">verification</label>
+                <input class="reginput" type="text" style="width:90px"></input>&nbsp;&nbsp;
+                <img src="{{ url_for('checkimg') }}" id="chekcimg"/>&nbsp;&nbsp;&nbsp;
+                <a href="{{ url_for('checkimg') }}" style="font-size:small;font-weight:bold;color:red;">reload</a> 
+            </div>
+            <div class="regdiv">
+                <a id="errchckmsg" style="display:inline-box;margin-left:50px;color:red;font-weight:bold;font-size:small;"></a>
+                <a id="errmsg" style="display:inline-box;margin-left:50px;color:red;font-weight:bold;font-size:small;">>{{ errmsg }}</a>
+            </div>
+            <div id="submitdiv" class="regdiv">
+                <input id="submit" type="submit" value="Sign up"/>
+            </div>
+            <div id="logindiv" class="regdiv">
+                <label style="display:inline-box;margin-left:130px;">Already a member?&nbsp;&nbsp;&nbsp;</label>
+                <a href="{{ url_for('index') }}" style="font-weight:bold;color:red">Log in</a>
+            </div>
+        </div>
+        <script type=text/javascript src="{{ url_for('static',filename="jquery.js") }}"></script>
+        <script type=text/javascript src="{{ url_for('static',filename="md5.js") }}"></script>
+        <script>
+        function ckusername(){
+            var uname=$("#username").val();
+            var patrn=/^[a-zA-z0-9]{6,}$/;   
+            if (!patrn.test(uname)){
+                $("#errchckmsg").text("username at least 6 digits or characters!");
+            }
+        }
+        function ckpwd(){
+            var pwd=$("#password").val();
+            var patrn=/^.{6,}$/;
+            if(!patrn.test(pwd)){
+                $("#errchckmsg").text("password at least 6 in length!");
+            }
+        }
+        function ckpwd2(){
+            var pwd=$("#password").val();
+            var pwd2=$("#password2").val();
+            if(pwd!=pwd2){
+                $("#errchckmsg").text("2 input password are different!");
+            }else{
+                $("#errchckmsg").text("");
+            }
+        }
+        $(function(){
+            $("#username").blur(function(){
+               ckusername(); 
+            });
+            $("#password").blur(function(){
+                ckpwd();
+            });
+            $("#password2").blur(function(){
+                ckpwd2();
+            });
+            $("#submit").click(function(){
+                if(!ckusername()||!ckpwd()||!ckpwd2()) return false;
+                return true;
+            });
+
+
+        });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" style="visibility: visible;">
+    <head>
+        <title>list of books</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='books.css') }}" />
+    </head>
+    <body>
+        <div id="wraper">
+            <div id="w1">
+                <a id="books">BOOKS</a>
+                <span id="davspan">
+                    <input type="text" id="querybox"></input>
+                    <input type="submit" id="querybtn" value="SEARCH"></input>
+                </span>
+            </div>
+            <div id="w2">
+                <a>bookname</a>
+                <a>uptime</a>
+                <a>visit time</a>
+            </div>
+            <div id="w3">
+             content
+            </div>   
+        </div>
+    </body>
+    <script>
+    var winHeight=window.screen.availHeight;
+    document.getElementById("wraper").style.height=winHeight*0.79+"px"; 
+    </script>
+</html>

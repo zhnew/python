@@ -1,0 +1,59 @@
+
+body{
+    background-color:azure;
+    font-family:Arial;
+}
+#nav{
+    height:64px;
+    position:relative;
+    background-color:#FF7F24;
+}
+#signup{
+    display:inline-block;
+    font-family:Arial;
+    font-size:200%;
+    font-weight:bold;
+    margin-left:10px;
+    margin-top:9px;
+}
+#wraper{
+    display:inline;
+    position:absolute;
+    width:600px;
+    height:250px;
+    left:50%;
+    margin-left:-300px;
+    top:130px;
+    background-color:gray;
+}
+.regdiv{
+    margin-left:20px;
+    margin-top:10px;
+}
+.reglabel{
+    font-size:120%;
+    display:inline-block;
+    font-weight:bold; 
+    width:120px;
+}
+#checkimg{
+    display:inline-block;
+    margin-top:5px;
+} 
+.reginput{
+    width:180px;
+}
+.reginfo{
+    display:inline-box;
+    margin-left:10px;
+}
+#submit{
+    width:130px;
+    margin-left:150px;
+    background-color:coral;
+    border:0px;
+    border-radius:4px;
+    height:30px;
+    font-size:130%;
+    font-weight:bold;
+}

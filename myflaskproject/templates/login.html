@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" style="visibility: visible;">
+    <head>
+        <title>login Mr. Niu's space</title>
+        <!-- <link rel="stylesheet" type="text/css" href="../css/login.css" /> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='login.css') }}" />
+   </head>
+    <body>
+
+        <div id="wraper" >
+            <div id="w1">
+                <a style="display:inline-block;margin-top:10px;margin-left:5px;font-family:Arial;font-size:large;font-weight:bold;">Log In</a> 
+                <a style="float:right;display:inline-block;margin-top:10px;margin-right:5px;font-family:Arial;font-size:large;color:red">{{ errmsg }}</a> 
+            </div>
+            <div id="w2">
+                <form name="login" action="{{ url_for('login') }}" method="post" id="login_form" >
+                <label for="username" class="label">username</label><br/>
+                <input class="input username" type="text" value="" name="username" id="username"><br/>
+                <label for="username" class="label">password</label><br/>
+                <input class="input password" type="password" id="password" name="password" autocomplete="off">
+                <p>
+                <span id="remespan">
+                    <input id="rememberme" type="radio"></input>
+                    <label id="rememberme">Remember me next time</label>
+                </span>
+                <p>
+                <a id="msg" style="font-weight:bold;font-family:Arial;color:red"></a>
+            </div>
+            <div id="w3">
+                <input class="button" type="submit" id="Login" name="Login" value="login" onclick="return bflogin()">
+                <a style="display:inline-block;margin-top:8px;font-family:Arial;font-size:small;">or</a>
+                <a id="hlnkNewuser" href="{{ url_for('register') }}"> Sign up as New user</a>
+                </form> 
+            </div>
+        </div>
+    <script type=text/javascript src="{{ url_for('static',filename="md5.js") }}"></script>
+    <script>
+    function check_name(){
+        var tag=document.getElementById('username');
+        var msg=document.getElementById('msg');
+        msg.innerHTML="";
+        reg = /^[\w\u4E00-\u9FA5]{6,}$/;
+        if(!reg.test(tag.value)) {
+            msg.innerHTML = "name at least 6 digits or characters!";
+            return false;
+        }
+        return true;
+    }
+    function check_pwd(){
+        var tag=document.getElementById('password');
+        var msg=document.getElementById('msg');
+        msg.innerHTML="";
+        if(tag.value.length<6){
+           msg.innerHTML="password at last 6 in length!";
+           return false;
+        }
+        tag.value=hex_md5(tag.value);
+        alert(tag.value);
+       return true;
+    } 
+    function bflogin(){
+        if(check_name()){
+            if(check_pwd()){
+                return true;
+            }
+        }
+        return false;
+    }
+    window.onload=function(){
+        var tag=document.getElementById('username');
+        tag.onblur=check_name;
+        var tag2=document.getElementById('password');
+        tag2.onblur=check_pwd;
+    }
+    </script>
+    </body>
+</html>
